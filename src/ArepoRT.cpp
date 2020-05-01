@@ -20,6 +20,9 @@
 #include "spectrum.h"
 #include "keyframe.h"
 
+ConfigSet Config;
+
+
 void rtRenderFrames()
 {
   Timer timer;
@@ -112,7 +115,8 @@ void rtRenderFrames()
   
 }
 
-ConfigSet Config;
+
+#ifndef BUILD_LIB 
 
 int main (int argc, char* argv[])
 {
@@ -292,3 +296,5 @@ int main (int argc, char* argv[])
 
   return 0;
 }
+
+#endif
