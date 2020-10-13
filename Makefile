@@ -23,7 +23,8 @@ INCL     = -I ./arepo/
 CC       = mpicxx
 LIBS     = -fopenmp -lm -L ./arepo/ 
 
-CFLAGS   = $(OPTIMIZE) -DH5_USE_16_API
+CFLAGS   = $(OPTIMIZE) -DH5_USE_16_API #-DMETALS
+
 
 # module load gcc gsl fftw-serial hdf5-serial impi
 CFLAGS += -I${GSL_HOME}/include -I${HDF5_HOME}/include -I./libpng/
@@ -49,8 +50,8 @@ INCL := $(addprefix src/,$(INCL))
 $(EXECNAME): libarepo.a $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(OPT) -o $(EXECNAME) $(LIBS)
 
-#libarepovtk.a : arepo/libarepo.a $(LIBOBJS)
-#	ar rcs libarepovtk.a arepo/libarepo.a $(LIBOBJS) 
+libarepovtk.a : arepo/libarepo.a $(LIBOBJS)
+	ar rcs libarepovtk.a arepo/libarepo.a $(LIBOBJS) 
 
 libarepovtk.so : arepo/libarepo.so $(LIBOBJS)
 	$(CC) -DBUILD_LIB  $(CFLAGS) $(OPT) -shared -o libarepovtk.so arepo/libarepo.so $(LIBOBJS) 

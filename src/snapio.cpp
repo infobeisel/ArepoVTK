@@ -319,8 +319,8 @@ void ArepoSnapshot::loadAllChunksWithMask(string maskFileName, vector<string> sn
       }
 
       // Metallicity
-      /*
-      if( groupExists(snapFilenames[i], groupName, "Metallicity") || 
+      
+      /*if( groupExists(snapFilenames[i], groupName, "Metallicity") || 
           groupExists(snapFilenames[i], groupName, "GFM_Metallicity") )
       {
         string metalObjName = "";
@@ -334,13 +334,13 @@ void ArepoSnapshot::loadAllChunksWithMask(string maskFileName, vector<string> sn
           readGroupDatasetSelect( snapFilenames[i], groupName, metalObjName, coord, -1, quantity );
           
           for( j=0; j < quantity.size(); j++ )
-            SphP[offset + j].Metallicity = quantity[j];
+            SphP[offset + j].MassMetallicity = quantity[j];
         } else {
           for( j=0; j < quantity.size(); j++ )
-            SphP[offset + j].Metallicity = 0.0;
+            SphP[offset + j].MassMetallicity = 0.0;
         }
-      }
-      */
+      }*/
+      
     } // readPartType==1
     
     // increment global snapshot offset as we move to next chunk
@@ -603,13 +603,13 @@ void ArepoSnapshot::loadAllChunksNoMask(vector<string> snapFilenames)
           readGroupDataset( snapFilenames[i], groupName, metalObjName, -1, quantity );
           
           for( j=0; j < quantity.size(); j++ )
-            SphP[offset + j].Metallicity = quantity[j];
+            SphP[offset + j].MassMetallicity = quantity[j];
         } else {
           for( j=0; j < quantity.size(); j++ )
-            SphP[offset + j].Metallicity = 0.0;
+            SphP[offset + j].MassMetallicity = 0.0;
         }
-      }
-      */
+      }*/
+      
 
       // MagneticField
       if( groupExists(snapFilenames[i], groupName, "MagneticField") )

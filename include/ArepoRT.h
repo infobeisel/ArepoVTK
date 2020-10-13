@@ -6,15 +6,13 @@
 #ifndef AREPO_RT_H
 #define AREPO_RT_H
 
-
-
 // defines
 #define AREPO_RT_VERSION    0.44
 #define L1_CACHE_LINE_SIZE  64
 #define FILTER_TABLE_SIZE   16
 #define TASK_MULT_FACT      8 //32
 #define TASK_MAX_PIXEL_SIZE 100 //16
-//why the fuck #define INFINITY            FLT_MAX
+//WHY THE FUCK ? #define INFINITY            FLT_MAX
 #define INSIDE_EPS          1.0e-11 //1.0e-6
 #define AUXMESH_ALLOC_SIZE  4000
 #define TF_NUM_VALS         9 // see transfer.h
@@ -40,7 +38,7 @@
 //#define NNI_LIANG_HALE
 //#define DTFE_INTERP
 //#define CELL_GRADIENTS_DENS
-#define CELL_PIECEWISE_CONSTANT
+//#define CELL_PIECEWISE_CONSTANT
 
 /* interpolation method options */
 

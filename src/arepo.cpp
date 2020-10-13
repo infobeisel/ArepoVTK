@@ -40,17 +40,20 @@ void Arepo::Cleanup()
 
 bool Arepo::LoadSnapshot()
 {
-  IF_DEBUG(cout << "Arepo::LoadSnapshot(" << snapFilename << ")." << endl);
+  cout << "Arepo::LoadSnapshot(" << snapFilename << ")." << endl;
   
-  if( !Config.verbose )
-    freopen("/dev/null","w",stdout); //hide arepo stdout  
+  
+  //if( !Config.verbose )
+  //  freopen("/dev/null","w",stdout); //hide arepo stdout  
   
   // set startup options
   WriteMiscFiles = 0;
   RestartSnapNum = -1;
   RestartFlag    = 0; // normal startup
 
+
   strcpy(ParameterFile,paramFilename.c_str());
+
 
   // call arepo: run setup (also sets units)
   begrun1();
@@ -75,7 +78,6 @@ bool Arepo::LoadSnapshot()
       cout << "Arepo::LoadSnapshot() ERROR! Neither [" << f1 << "] nor [" << f2 << "] found!" << endl;
       terminate("1140");
   }
-  
   // custom selective load snapshot, make/use maskfile for job splitting
   ArepoSnapshot arepoSnap(snapFilename);
   arepoSnap.read_ic();
@@ -525,7 +527,7 @@ void addValsContribution( vector<float> &vals, int SphP_ind, double weight )
     vals[TF_VAL_TEMP]    += SphP[SphP_ind].Utherm * weight;
     vals[TF_VAL_VMAG]    += P[SphP_ind].Vel[0] * weight;
     vals[TF_VAL_ENTROPY] += SphP[SphP_ind].OldMass * weight;
-    vals[TF_VAL_METAL]   += 0.0; //SphP[SphP_ind].Metallicity * weight;
+    //vals[TF_VAL_METAL]   += SphP[SphP_ind].MassMetallicity * weight;
     // SZ y-parameter (no constants, not real units)
     // line integral of: n_e*T = (x_e*rho*T) = (x_e*rho*(U/mu))
     // require/assume: Utherm is temperature in units of Kelvin already
@@ -557,7 +559,7 @@ void addValsContribution( vector<float> &vals, int SphP_ind, double weight )
   }
 }
 
-int ArepoMesh::FindNearestGasParticle(Point &pt, int guess, double *mindist)
+int ArepoMesh::FindNearestGasParticle(Point &pt, int guess, double *mindist) const
 {
   // based on ngbtree_walk.c:ngb_treefind_variable() (no MPI)
   int node, nearest, p;
