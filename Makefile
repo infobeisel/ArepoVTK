@@ -17,7 +17,8 @@ EXECNAME = ArepoRT
 
 ARCH = $(shell uname)
 
-OPTIMIZE = -Wall -g -m64 -O3 -fPIC #-pg #enable profiler
+#OPTIMIZE = -Wall -g -m64 -O3 -fPIC #-pg #enable profiler
+OPTIMIZE = -m64 -O3 -fPIC #-pg #enable profiler
 INCL     = -I ./arepo/
 
 CC       = mpicxx
